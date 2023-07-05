@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="./weather.css" />
+    <!-- <script src="./weather.js" defer></script> -->
+
+    <!--leaflet css-->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+
+    <!--font style-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@500&family=Rajdhani:wght@700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--font awesome icons-->
+    <script
+      src="https://kit.fontawesome.com/a76d23d87b.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!--leaflet javascript-->
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+
+    <script type="module" src="./weather.js" defer></script>
+  </head>
+
+  <body>
+    <div class="app-container" id="app">
+      <div class="cursor cursor-active"></div>
+      <div class="app">
+        <section class="main">
+          <div class="map-container">
+            <div class="map" id="map"></div>
+
+            <form class="mapForm">
+              <p class="country-error"></p>
+              <input
+                type="search"
+                class="map-search"
+                placeholder="Enter a country"
+              />
+            </form>
+
+            <div class="attribution">
+              <p class="attribution-text">
+                Weather data provided by Open Meteo
+              </p>
+            </div>
+          </div>
+          <!--section map container-->
+
+          <div class="weather-info-box">
+            <div class="weather-info-container">
+              <div class="weather-info">
+                <div class="current-weather"></div>
+              </div>
+            </div>
+
+            <div class="weather-info-others"></div>
+          </div>
+          <!--section weather info-->
+        </section>
+      </div>
+    </div>
+  </body>
+</html>
