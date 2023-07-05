@@ -172,7 +172,6 @@ mapForm.addEventListener("submit", function (e) {
   //find the country details
   forwardGeocoding(country)
     .then((countryResults) => {
-      console.log(countryResults);
       //if the country is undefined it means that it does not exist
       if (countryResults === undefined) {
         throw new Error("Country not Found");
@@ -205,7 +204,14 @@ mapForm.addEventListener("submit", function (e) {
       const { lat, lng } = countryResults.geometry;
 
       //show location on map
-      map.panTo(new L.LatLng(lat, lng));
+      //if the map has already been created then just pan to view
+      if (map) {
+        map.panTo(new L.LatLng(lat, lng));
+      }
+      //if the user denied access, then map was not created, then create a new map with searched location
+      else {
+        createMap(lat, lng);
+      }
 
       //adding a marker to indicate that it is our location
       let marker = L.marker([lat, lng]).addTo(map);
