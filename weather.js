@@ -141,8 +141,6 @@ function displayLocationOnMap(lat, lng) {
 
   //get the country details using the lat and long obtained
   backwardGeocoding(lat, lng).then((countryResults) => {
-    // console.log(countryResults);
-
     //the name of the state gotten from country api
     //remove the word "state" from the name of the state
     const countryState = `${countryResults.components.state.replace(
@@ -174,17 +172,28 @@ mapForm.addEventListener("submit", function (e) {
   //find the country details
   forwardGeocoding(country)
     .then((countryResults) => {
+      console.log(countryResults);
       //if the country is undefined it means that it does not exist
       if (countryResults === undefined) {
         throw new Error("Country not Found");
       }
 
-      const countryShortCode = `${countryResults.components["ISO_3166-1_alpha-2"]}`;
+      //sets the short code of the country
+      let countryShortCode = `${countryResults.components["ISO_3166-1_alpha-2"]}`;
 
       let countryState;
+
       //if we search a country, it doesnt have a state. so set the state to that country
-      if (!countryResults.components.state) {
+      if (
+        countryResults.components.country &&
+        !countryResults.components.state
+      ) {
         countryState = countryResults.components.country;
+      }
+      //if we search for a continent, it does not have a country or state, set to continent name
+      else if (!countryResults.components.country) {
+        countryState = countryResults.components.place;
+        countryShortCode = countryState.slice(0, 3);
       } else {
         countryState = `${countryResults.components.state.replace(
           " State",
@@ -265,7 +274,6 @@ function handleWeatherData(weatherdata, countryState, countryShortCode) {
   )}T${hour.padStart(2, "0")}:00`;
 
   const weatherHourly = weatherdata.hourly;
-  console.log(weatherHourly);
   //current time
   const indexOfTimeNow = weatherHourly.time.indexOf(dateString);
 
