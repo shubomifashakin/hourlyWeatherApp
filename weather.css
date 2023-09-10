@@ -5,6 +5,11 @@
   --primary-font-color: rgb(255, 255, 255);
 }
 
+html {
+  width: 100%;
+  height: 100%;
+}
+
 body {
   overflow: hidden;
   font-family: "Rajdhani", sans-serif;
@@ -314,3 +319,18 @@ body {
   width: 15px;
   height: 15px;
 }
+/* 
+@media (max-width: 800px) {
+  .main {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .weather-info-box {
+    order: 1;
+  }
+
+  .map-container {
+    order: 2;
+  }
+} */
